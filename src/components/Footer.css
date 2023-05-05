@@ -1,0 +1,73 @@
+.Footer {
+  display: flex;
+}
+
+.FooterLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.FooterCenter {
+  flex: 1;
+  padding: 20px;
+}
+
+.FooterRight {
+  flex: 1;
+  padding: 20px;
+}
+
+.FooterLeft > .logo {
+}
+
+.FooterLeft > .desc {
+  margin: 20px 0px;
+}
+
+.FooterLeft > .socialcontainer {
+  display: flex;
+}
+
+.FooterLeft > .socialcontainer > .socialicon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.FooterCenter > .title {
+  margin-bottom: 30px;
+}
+
+.FooterCenter > .list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.FooterCenter > .list > li {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.FooterRight > .title {
+  margin-bottom: 30px;
+}
+
+.FooterRight > .contactItem {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.payment {
+  width: 50%;
+}
