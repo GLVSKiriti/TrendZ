@@ -32,7 +32,11 @@ function Slider() {
       >
         {slideritems.map((item) => {
           return (
-            <div className="slide" style={{ backgroundColor: item.bg }}>
+            <div
+              className="slide"
+              style={{ backgroundColor: item.bg }}
+              key={item.id}
+            >
               <div className="ImgContainer">
                 <img src={item.img} alt="" className="Image" />
               </div>

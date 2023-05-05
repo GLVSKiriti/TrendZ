@@ -7,7 +7,7 @@ function Categories() {
   return (
     <div className="Categories">
       {categories.map((item) => {
-        return <CategoryItem item={item} />;
+        return <CategoryItem item={item} key={item.id} />;
       })}
     </div>
   );
