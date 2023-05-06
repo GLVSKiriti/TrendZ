@@ -1,21 +1,41 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import Announcement from "../components/Announcement";
-import "./ProductList.css";
 import Products from "../components/Products";
 import NewsLetter from "../components/NewsLetter";
 import Footer from "../components/Footer";
+import styled from "styled-components";
+
+const Title = styled.h1`
+  margin: 20px;
+`;
+const FilterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const Filter = styled.div`
+  margin: 20px;
+`;
+const Filtertext = styled.span`
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 20px;
+`;
+const FilterSelector = styled.select`
+  padding: 10px;
+  margin-right: 20px;
+`;
 
 function ProductList() {
   return (
-    <div className="ProductList">
+    <div>
       <Announcement />
       <NavBar />
-      <h1 className="ProductListTitle">Dresses</h1>
-      <div className="filterContainer">
-        <div className="filter">
-          <span className="filtertext">Filter Products:</span>
-          <select className="filterselector">
+      <Title>Dresses</Title>
+      <FilterContainer>
+        <Filter>
+          <Filtertext>Filter Products:</Filtertext>
+          <FilterSelector>
             <option disabled selected>
               Color
             </option>
@@ -25,8 +45,8 @@ function ProductList() {
             <option>Blue</option>
             <option>Yellow</option>
             <option>Green</option>
-          </select>
-          <select className="filterselector">
+          </FilterSelector>
+          <FilterSelector>
             <option disabled selected>
               Size
             </option>
@@ -35,17 +55,17 @@ function ProductList() {
             <option>M</option>
             <option>L</option>
             <option>XL</option>
-          </select>
-        </div>
-        <div className="filter">
-          <span className="filtertext">Sort Products:</span>
-          <select className="filterselector">
+          </FilterSelector>
+        </Filter>
+        <Filter>
+          <Filtertext>Sort Products:</Filtertext>
+          <FilterSelector>
             <option selected>Newest</option>
             <option>Price (asc)</option>
             <option>Price (desc)</option>
-          </select>
-        </div>
-      </div>
+          </FilterSelector>
+        </Filter>
+      </FilterContainer>
       <Products />
       <NewsLetter />
       <Footer />

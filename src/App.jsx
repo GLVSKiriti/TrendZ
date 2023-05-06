@@ -8,10 +8,10 @@ import Register from "./pages/Register";
 function App() {
   // return <Home />;
   // return <ProductList />;
-  // return <Product />;
+  return <Product />;
   // return <Register />;
   // return <Login />;
-  return <Cart />;
+  // return <Cart />;
 }
 
 export default App;

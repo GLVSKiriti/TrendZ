@@ -1,33 +1,82 @@
 import React from "react";
-import "../components/NavBar.css";
+import styled from "styled-components";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 
+const Container = styled.div`
+  height: 60px;
+`;
+const Wrapper = styled.div`
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const Left = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+`;
+const Lang = styled.span`
+  font-size: 14px;
+  cursor: pointer;
+`;
+const SearchContainer = styled.div`
+  border: 0.5px solid lightgray;
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+  padding: 5px;
+`;
+const Input = styled.input`
+  border: none;
+`;
+
+const Center = styled.div`
+  flex: 1;
+  text-align: center;
+`;
+
+const Logo = styled.h1`
+  font-weight: bold;
+`;
+
+const Right = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+const MenuItem = styled.div`
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 25px;
+`;
 function NavBar() {
   return (
-    <div className="container">
-      <div className="wrapper">
-        <div className="left">
-          <span>EN</span>
-          <div className="searchcontainer">
-            <input type="text" className="input" />
+    <Container>
+      <Wrapper className="wrapper">
+        <Left className="left">
+          <Lang>EN</Lang>
+          <SearchContainer className="searchcontainer">
+            <Input type="text" className="input" />
             <Search style={{ color: "gray", fontSize: 16 }} />
-          </div>
-        </div>
-        <div className="center">
-          <h1 className="logo">TrendZ</h1>
-        </div>
-        <div className="right">
-          <div className="menuItem">Register</div>
-          <div className="menuItem">SignIn</div>
-          <div className="menuItem">
+          </SearchContainer>
+        </Left>
+        <Center className="center">
+          <Logo className="logo">TrendZ</Logo>
+        </Center>
+        <Right className="right">
+          <MenuItem className="menuItem">Register</MenuItem>
+          <MenuItem className="menuItem">SignIn</MenuItem>
+          <MenuItem className="menuItem">
             <Badge badgeContent={4} color="primary">
               <ShoppingCartOutlined />
             </Badge>
-          </div>
-        </div>
-      </div>
-    </div>
+          </MenuItem>
+        </Right>
+      </Wrapper>
+    </Container>
   );
 }
 

@@ -1,15 +1,21 @@
 import React from "react";
 import { categories } from "../data";
 import CategoryItem from "./CategoryItem";
-import "./Categories.css";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+`;
 
 function Categories() {
   return (
-    <div className="Categories">
+    <Container>
       {categories.map((item) => {
         return <CategoryItem item={item} key={item.id} />;
       })}
-    </div>
+    </Container>
   );
 }
 
