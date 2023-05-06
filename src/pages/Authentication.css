@@ -1,0 +1,91 @@
+.registerContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+      center;
+}
+
+.loginContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+      center;
+  background-size: cover;
+}
+
+.registerWrapper {
+  padding: 20px;
+  width: 40%;
+  background-color: white;
+}
+
+.registerWrapper > .title {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.registerWrapper > form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.registerWrapper > form > input {
+  flex: 1;
+  min-width: 40%;
+  margin: 20px 10px 0px 0px;
+  padding: 10px;
+}
+
+.agreement {
+  font-size: 15px;
+  margin: 20px 0px;
+}
+
+.registerButton {
+  width: 40%;
+  border: none;
+  padding: 15px 20px;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+}
+
+.loginContainer > .registerWrapper {
+  padding: 20px;
+  width: 25%;
+  background-color: white;
+}
+
+.loginContainer > .registerWrapper > form > input {
+  margin: 10px 0px;
+}
+
+.loginContainer > .registerWrapper > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginContainer > .registerWrapper > a {
+  margin: 5px 0px;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.loginContainer > .registerWrapper > form > .registerButton {
+  margin-bottom: 10px;
+}
