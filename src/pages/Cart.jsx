@@ -4,9 +4,11 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Wrapper = styled.div`
   padding: 20px;
+  ${mobile({ padding: "10px" })}
 `;
 
 const Title = styled.h1`
@@ -28,6 +30,10 @@ const Button = styled.button`
   font-size: 15px;
 `;
 
+const Toptexts = styled.div`
+  ${mobile({ display: "none" })}
+`;
+
 const Toptext = styled.span`
   text-decoration: underline;
   cursor: pointer;
@@ -36,6 +42,7 @@ const Toptext = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({ flexDirection: "column" })}
 `;
 const Info = styled.div`
   flex: 3;
@@ -43,6 +50,7 @@ const Info = styled.div`
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({ flexDirection: "column" })}
 `;
 const ProductDetail = styled.div`
   flex: 2;
@@ -69,15 +77,18 @@ const PriceDetail = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  ${mobile({ flexDirection: "row", alignItems: "baseline", marginTop: "15px" })}
 `;
 const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  ${mobile({ marginRight: "20px" })}
 `;
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px;
+  ${mobile({ margin: "5px 12px" })}
 `;
 const ProductPrice = styled.div`
   font-size: 30px;
@@ -104,6 +115,7 @@ const Button2 = styled.button`
   background-color: black;
   color: white;
   font-weight: 600;
+  cursor: pointer;
 `;
 const Hr = styled.hr`
   background-color: #eee;
@@ -121,10 +133,10 @@ function Cart() {
           <Button style={{ backgroundColor: "transparent" }}>
             Continue Shopping
           </Button>
-          <div className="toptexts">
+          <Toptexts className="toptexts">
             <Toptext className="toptext">Shopping Bag(2)</Toptext>
             <Toptext className="toptext">Your Wishlist(0)</Toptext>
-          </div>
+          </Toptexts>
           <Button
             style={{ backgroundColor: "black", color: "white", border: "none" }}
           >
