@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import Announcement from "../components/Announcement";
 import NewsLetter from "../components/NewsLetter";
@@ -6,6 +6,8 @@ import Footer from "../components/Footer";
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Wrapper = styled.div`
   padding: 50px;
@@ -59,6 +61,9 @@ const FilterColor = styled.div`
   border-radius: 50%;
   margin: 0px 5px;
   cursor: pointer;
+  &:hover {
+    border: 2.5px solid black;
+  }
 `;
 const FilterSize = styled.select`
   margin-left: 10px;
@@ -102,55 +107,94 @@ const AddToCart = styled.button`
 `;
 
 function Product() {
+  const location = useLocation();
+  const pid = location.pathname.split("/")[2];
+
+  const [product, setProduct] = useState({
+    categories: [],
+    color: [],
+    size: [],
+  });
+
+  const [qty, setQty] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+
+  const handleqty = (fun) => {
+    if (fun === "incr") {
+      setQty(qty + 1);
+    } else if (qty > 1) {
+      setQty(qty - 1);
+    }
+  };
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/api/product/find/${pid}`,
+          {
+            headers: {
+              token:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTlhYWU4M2Q1M2I5ZGNkN2E2ODMwYSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4Mzc4NzA2NywiZXhwIjoxNjg0MDQ2MjY3fQ.kC0Obf4B2UfWq4uMu7Rkp6F_e8DDeUGLxgg1oAWmhtY",
+            },
+          }
+        );
+        setProduct(res.data);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProduct();
+  }, [pid]);
   return (
     <div className="productpage">
       <NavBar />
       <Announcement />
       <Wrapper className="ProductWrapper">
         <ImageContainer className="imageContainer">
-          <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" alt="" />
+          <Image src={product.img} alt="" />
         </ImageContainer>
         <InfoContainer className="infoContainer">
-          <Title className="title">Denim JumpSuit</Title>
-          <Desc className="desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-            omnis possimus non magnam sequi temporibus ipsa aspernatur,
-            repellendus atque recusandae reiciendis optio! Saepe corporis
-            quidem, culpa possimus libero enim doloribus.
-          </Desc>
-          <Price className="price">200₹</Price>
+          <Title className="title">{product.title}</Title>
+          <Desc className="desc">{product.desc}</Desc>
+          <Price className="price">{product.price}</Price>
           <FilterContainer className="filterContainer">
             <Filter className="filter">
               <Title2 className="title">Color</Title2>
-              <FilterColor
-                className="filterColor"
-                style={{ backgroundColor: "black" }}
-              ></FilterColor>
-              <FilterColor
-                className="filterColor"
-                style={{ backgroundColor: "darkblue" }}
-              ></FilterColor>
-              <FilterColor
-                className="filterColor"
-                style={{ backgroundColor: "gray" }}
-              ></FilterColor>
+              {product.color.map((e) => {
+                return (
+                  <FilterColor
+                    style={{ backgroundColor: `${e}` }}
+                    key={e}
+                    onClick={() => setColor(e)}
+                  ></FilterColor>
+                );
+              })}
             </Filter>
             <Filter className="filter">
               <Title2 className="title">Size</Title2>
-              <FilterSize className="filterSize">
-                <option>XS</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
+              <FilterSize onChange={(e) => setSize(e.target.value)}>
+                {product.size.map((e) => {
+                  return <option key={e}>{e}</option>;
+                })}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer className="AddContainer">
             <AmountContainer className="AmountContainer">
-              <Remove />
-              <Amount className="amount">1</Amount>
-              <Add />
+              <Remove
+                onClick={() => {
+                  handleqty("decr");
+                }}
+              />
+              <Amount className="amount">{qty}</Amount>
+              <Add
+                onClick={() => {
+                  handleqty("incr");
+                }}
+              />
             </AmountContainer>
             <AddToCart className="AddToCart">Add To Cart</AddToCart>
           </AddContainer>
