@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Announcement from "../components/Announcement";
 import Products from "../components/Products";
@@ -6,6 +6,7 @@ import NewsLetter from "../components/NewsLetter";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { useLocation } from "react-router-dom";
 
 const Title = styled.h1`
   margin: 20px;
@@ -31,29 +32,37 @@ const FilterSelector = styled.select`
 `;
 
 function ProductList() {
+  const location = useLocation();
+  const category = location.pathname.split("/")[2];
+  const [filter, setFilters] = useState({});
+  const [sort, setSort] = useState("newest");
+
+  const handleFilters = (event) => {
+    const value = event.target.value;
+    setFilters({
+      ...filter,
+      [event.target.name]: value,
+    });
+  };
   return (
     <div>
       <Announcement />
       <NavBar />
-      <Title>Dresses</Title>
+      <Title>{category}</Title>
       <FilterContainer>
         <Filter>
           <Filtertext>Filter Products:</Filtertext>
-          <FilterSelector>
-            <option disabled selected>
-              Color
-            </option>
-            <option>White</option>
-            <option>Black</option>
-            <option>Red</option>
-            <option>Blue</option>
-            <option>Yellow</option>
-            <option>Green</option>
+          <FilterSelector name="color" onChange={handleFilters}>
+            <option disabled>Color</option>
+            <option>white</option>
+            <option>black</option>
+            <option>red</option>
+            <option>blue</option>
+            <option>yellow</option>
+            <option>green</option>
           </FilterSelector>
-          <FilterSelector>
-            <option disabled selected>
-              Size
-            </option>
+          <FilterSelector name="size" onChange={handleFilters}>
+            <option disabled>Size</option>
             <option>XS</option>
             <option>S</option>
             <option>M</option>
@@ -63,14 +72,18 @@ function ProductList() {
         </Filter>
         <Filter>
           <Filtertext>Sort Products:</Filtertext>
-          <FilterSelector>
-            <option selected>Newest</option>
-            <option>Price (asc)</option>
-            <option>Price (desc)</option>
+          <FilterSelector
+            onChange={(event) => {
+              setSort(event.target.value);
+            }}
+          >
+            <option value={"newest"}>Newest</option>
+            <option value={"asc"}>Price (asc)</option>
+            <option value={"desc"}>Price (desc)</option>
           </FilterSelector>
         </Filter>
       </FilterContainer>
-      <Products />
+      <Products category={category} filter={filter} sort={sort} />
       <NewsLetter />
       <Footer />
     </div>
