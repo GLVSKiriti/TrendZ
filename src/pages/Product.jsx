@@ -149,20 +149,20 @@ function Product() {
     getProduct();
   }, [pid]);
   return (
-    <div className="productpage">
+    <div>
       <NavBar />
       <Announcement />
-      <Wrapper className="ProductWrapper">
-        <ImageContainer className="imageContainer">
+      <Wrapper>
+        <ImageContainer>
           <Image src={product.img} alt="" />
         </ImageContainer>
-        <InfoContainer className="infoContainer">
-          <Title className="title">{product.title}</Title>
-          <Desc className="desc">{product.desc}</Desc>
-          <Price className="price">{product.price}</Price>
-          <FilterContainer className="filterContainer">
-            <Filter className="filter">
-              <Title2 className="title">Color</Title2>
+        <InfoContainer>
+          <Title>{product.title}</Title>
+          <Desc>{product.desc}</Desc>
+          <Price>{product.price}</Price>
+          <FilterContainer>
+            <Filter>
+              <Title2>Color</Title2>
               {product.color.map((e) => {
                 return (
                   <FilterColor
@@ -173,8 +173,8 @@ function Product() {
                 );
               })}
             </Filter>
-            <Filter className="filter">
-              <Title2 className="title">Size</Title2>
+            <Filter>
+              <Title2>Size</Title2>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
                 {product.size.map((e) => {
                   return <option key={e}>{e}</option>;
@@ -182,21 +182,21 @@ function Product() {
               </FilterSize>
             </Filter>
           </FilterContainer>
-          <AddContainer className="AddContainer">
-            <AmountContainer className="AmountContainer">
+          <AddContainer>
+            <AmountContainer>
               <Remove
                 onClick={() => {
                   handleqty("decr");
                 }}
               />
-              <Amount className="amount">{qty}</Amount>
+              <Amount>{qty}</Amount>
               <Add
                 onClick={() => {
                   handleqty("incr");
                 }}
               />
             </AmountContainer>
-            <AddToCart className="AddToCart">Add To Cart</AddToCart>
+            <AddToCart>Add To Cart</AddToCart>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

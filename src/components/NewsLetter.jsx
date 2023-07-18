@@ -46,18 +46,12 @@ const Button = styled.button`
 
 function NewsLetter() {
   return (
-    <Container className="NewsLetter">
-      <Title className="NewsLetterTitle">NewsLetter</Title>
-      <Desc className="NewsLetterDescription">
-        Get timely updates from your favorite products
-      </Desc>
-      <InputContainer className="NewsLetterInputContainer">
-        <Input
-          type="text"
-          placeholder="Enter Your Email"
-          className="NewsLetterInput"
-        />
-        <Button className="NewsLetterButton">
+    <Container>
+      <Title>NewsLetter</Title>
+      <Desc>Get timely updates from your favorite products</Desc>
+      <InputContainer>
+        <Input type="text" placeholder="Enter Your Email" />
+        <Button>
           <Send />
         </Button>
       </InputContainer>

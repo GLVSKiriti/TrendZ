@@ -124,18 +124,18 @@ const Hr = styled.hr`
 `;
 function Cart() {
   return (
-    <div className="cartpage">
+    <div>
       <NavBar />
       <Announcement />
-      <Wrapper className="cartWrapper">
+      <Wrapper>
         <Title>Your Bag</Title>
         <Top>
           <Button style={{ backgroundColor: "transparent" }}>
             Continue Shopping
           </Button>
-          <Toptexts className="toptexts">
-            <Toptext className="toptext">Shopping Bag(2)</Toptext>
-            <Toptext className="toptext">Your Wishlist(0)</Toptext>
+          <Toptexts>
+            <Toptext>Shopping Bag(2)</Toptext>
+            <Toptext>Your Wishlist(0)</Toptext>
           </Toptexts>
           <Button
             style={{ backgroundColor: "black", color: "white", border: "none" }}
@@ -152,16 +152,16 @@ function Cart() {
                   alt=""
                 />
                 <Details>
-                  <div className="productname">
+                  <div>
                     <b>Product:</b>Jessie Thunder Shoes
                   </div>
-                  <div className="productId">
+                  <div>
                     <b>ID:</b> 93813718293
                   </div>
                   <ProductColor
                     style={{ backgroundColor: "black" }}
                   ></ProductColor>
-                  <div className="productSize">
+                  <div>
                     <b>Size:</b> M
                   </div>
                 </Details>
@@ -183,16 +183,16 @@ function Cart() {
                   alt=""
                 />
                 <Details>
-                  <div className="productname">
+                  <div>
                     <b>Product:</b>Hakura T-Shirt
                   </div>
-                  <div className="productId">
+                  <div>
                     <b>ID:</b> 93813718293
                   </div>
                   <ProductColor
                     style={{ backgroundColor: "gray" }}
                   ></ProductColor>
-                  <div className="productSize">
+                  <div>
                     <b>Size:</b> M
                   </div>
                 </Details>

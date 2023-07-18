@@ -67,19 +67,19 @@ const ProductIcon = styled.div`
 `;
 function ProductItem({ item }) {
   return (
-    <Container className="Container">
-      <Circle className="circle"></Circle>
-      <Image src={item.img} alt="" className="productImage" />
-      <ProductInfo className="productInfo">
-        <ProductIcon className="productIcon">
+    <Container>
+      <Circle></Circle>
+      <Image src={item.img} alt="" />
+      <ProductInfo>
+        <ProductIcon>
           <ShoppingCartOutlined />
         </ProductIcon>
-        <ProductIcon className="productIcon">
+        <ProductIcon>
           <Link to={`/product/${item._id}`}>
             <SearchOutlined />
           </Link>
         </ProductIcon>
-        <ProductIcon className="productIcon">
+        <ProductIcon>
           <FavoriteBorderOutlined />
         </ProductIcon>
       </ProductInfo>

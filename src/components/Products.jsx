@@ -57,7 +57,7 @@ function Products(props) {
   }, [props.sort]);
 
   return (
-    <Container className="Products">
+    <Container>
       {props.category
         ? filteredProducts.map((item) => {
             return <ProductItem item={item} key={item.id} />;
