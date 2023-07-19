@@ -7,6 +7,8 @@ import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 
 const Wrapper = styled.div`
@@ -116,16 +118,22 @@ function Product() {
     size: [],
   });
 
-  const [qty, setQty] = useState(1);
+  const [quantity, setQty] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
+  const dispatch = useDispatch();
 
   const handleqty = (fun) => {
     if (fun === "incr") {
-      setQty(qty + 1);
-    } else if (qty > 1) {
-      setQty(qty - 1);
+      setQty(quantity + 1);
+    } else if (quantity > 1) {
+      setQty(quantity - 1);
     }
+  };
+
+  const handleClick = () => {
+    //update cart
+    dispatch(addProduct({ ...product, quantity, color, size }));
   };
 
   useEffect(() => {
@@ -148,6 +156,7 @@ function Product() {
     };
     getProduct();
   }, [pid]);
+
   return (
     <div>
       <NavBar />
@@ -176,8 +185,14 @@ function Product() {
             <Filter>
               <Title2>Size</Title2>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
-                {product.size.map((e) => {
-                  return <option key={e}>{e}</option>;
+                {product.size.map((e, i) => {
+                  return i === 0 ? (
+                    <option key={e} selected="selected">
+                      {e}
+                    </option>
+                  ) : (
+                    <option key={e}>{e}</option>
+                  );
                 })}
               </FilterSize>
             </Filter>
@@ -189,14 +204,14 @@ function Product() {
                   handleqty("decr");
                 }}
               />
-              <Amount>{qty}</Amount>
+              <Amount>{quantity}</Amount>
               <Add
                 onClick={() => {
                   handleqty("incr");
                 }}
               />
             </AmountContainer>
-            <AddToCart>Add To Cart</AddToCart>
+            <AddToCart onClick={handleClick}>Add To Cart</AddToCart>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
